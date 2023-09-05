@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>عرض الساعة</title>
+    <style>
+        /* تنسيق العنصر الذي يعرض الوقت */
+        #clock {
+            font-size: 48px;
+            font-family: "Arial Black", sans-serif;
+            text-align: center;
+            color: #007BFF;
+            margin-top: 50px;
+        }
+
+        .star {
+            display: block;
+            width: 0;
+            height: 0;
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            border-bottom: 50px solid #f39c12;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        /* إعطاء تداخل للنجمة */
+        .star:before,
+        .star:after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            position: absolute;
+        }
+
+        .star:before {
+            border-bottom: 15px solid #f39c12;
+            top: 18px;
+            left: -25px;
+        }
+
+        .star:after {
+            border-bottom: 15px solid #f39c12;
+            top: 18px;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- نجمة -->
+    <div class="star"></div>
+
+    <!-- عنصر لعرض الساعة -->
+    <div id="clock"></div>
+
+    <script>
+        // الكود الخاص بعرض الساعة
+        var clockElement = document.getElementById('clock');
+
+        function updateClock() {
+            var currentTime = new Date();
+            var hours = currentTime.getHours();
+            var minutes = currentTime.getMinutes();
+            var seconds = currentTime.getSeconds();
+
+            hours = (hours < 10) ? "0" + hours : hours;
+            minutes = (minutes < 10) ? "0" + minutes : minutes;
+            seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+            var timeString = hours + ":" + minutes + ":" + seconds;
+            clockElement.textContent = timeString;
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock(); // تشغيل الساعة لأول مرة
+    </script>
+</body>
+</html>
